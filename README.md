@@ -2,10 +2,16 @@
 RECKLESS - gRoup spEcifiC Kmers to pLant dEnovo aSSembly pipeline
 
 
+This pipeline tries to discover group-specific genes and alleles (from plants) when the only available data is pool-seq short-reads.
+Such datasets are 'suboptimal' when the aim is to discover something like sex-chromosomes: 
+the aim would ideally be reached with haplotype-resolved chromosome-scale assemblies and individual re-sequencing data from at least 10 unrelated individuals per group (see my other pipelines).
+But if that is not available, and if you feel lucky, comparing only the pools of two groups can be a successful first step, and sufficient to design group-diagnostic PCR markers.
 
-inputs: short-reads (PE) of two groups
 
-databases required: NCBI nt, lists of taxids under Viridiplantae subtrees etc
+inputs: short-reads (PE) of two groups, ideally pool-seq
+
+output: list of putative genes that are either entirely specific to one group (e.g. Y-specific genes on sex-chromosomes), or that show SNP alleles specific to one group (e.g. gametologs on sex-chromosomes)
+
 
 steps:
 - get group-specific kmers | parameters for KMC
@@ -30,6 +36,11 @@ tools required:
 - kmc
 - pandas
 
+databases required: 
+- NCBI nt
+- lists (textfiles) of taxids under Viridiplantae subtrees etc. Ask author for specifics or read the code.
+
+
 ## simulate test data
 
 A test dataset is composed as follows:
@@ -40,7 +51,7 @@ A test dataset is composed as follows:
 
 group-divergence exists both in the degree and species of contaminants AND in the plant data.
 
-
+```
 import random
 
 with open("Ath_100kb.fasta", "r") as I:
@@ -62,10 +73,13 @@ outseq = inseq[:1000] + "".join(div_region) + inseq[11000:]
 with open("Ath_100kb.2nd_allele.fasta", "w") as OUT:
 	OUT.write(">second_allele"+"\n")
 	OUT.write(outseq+"\n")
+
+```
 	
 ### now simulate reads and compose the groups.
 We wanted 100x coverage for the plant, i.e. c. 33000 PE150 reads, BUT there are contaminants which make up c. 10% of the reads.
 
+```
 wgsim -N 15000 -1 150 -2 150 Ath_100kb.fasta tmp1.1.fastq tmp1.2.fastq
 wgsim -N 15000 -1 150 -2 150 Ath_100kb.2nd_allele.fasta tmp2.1.fastq tmp2.2.fastq
 wgsim -N 3000 -1 150 -2 150 Pseu_100kb.fasta tmp3.1.fastq tmp3.2.fastq
@@ -82,6 +96,7 @@ cat tmp1.2.fastq tmp3.2.fastq | sed 's/\// /g' > sample_2.2.fastq
 rm tmp*
 
 gzip *.fastq
+```
 
 #########
 
