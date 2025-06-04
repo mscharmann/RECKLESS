@@ -1,0 +1,9 @@
+kmer_size: 21
+samples_units_fqs_map: "data/pools_units_readfiles.txt"
+
+nt_path: "/mnt/barn/mscharmann/BLASTDBs/nt/nt"
+TAIR_path: "/mnt/barn/mscharmann/BLASTDBs/Araport11_genes/Araport11_pep"
+taxid_list_Viridiplantae: "/mnt/barn/mscharmann/BLASTDBs/taxid_lists/NCBI_taxonomy_Viridiplantae_subtree.taxids.2022-01-20.txt"
+taxid_list_Fungi: "/mnt/barn/mscharmann/BLASTDBs/taxid_lists/NCBI_taxonomy_Fungi_subtree.taxids.2022-01-20.txt"
+taxid_list_Metazoa: "/mnt/barn/mscharmann/BLASTDBs/taxid_lists/NCBI_taxonomy_Metazoa_subtree.taxids.2022-01-20.txt"
+taxid_list_Bacteria: "/mnt/barn/mscharmann/BLASTDBs/taxid_lists/NCBI_taxonomy_Bacteria_subtree.taxids.2022-01-20.txt"
