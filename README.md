@@ -3,8 +3,10 @@ RECKLESS - gRoup spEcifiC Kmers to pLant dEnovo aSSembly pipeline
 
 
 This pipeline tries to discover group-specific genes and alleles (from plants) when the only available data is pool-seq short-reads.
-Such datasets are 'suboptimal' when the aim is to discover something like sex-chromosomes: 
-the aim would ideally be reached with haplotype-resolved chromosome-scale assemblies and individual re-sequencing data from at least 10 unrelated individuals per group (see my other pipelines).
+Such datasets are 'suboptimal' when the aim is to discover genomic population polymorphsims like sex-chromosomes, because:
+- true genomic group-specificity is confounded with group-specific presence and abundance of contaminants (e.g. micro-organisms). This is HIGHLY expected in plant tissue sampled from the wild.
+- assembly of a reference sequence (haploid representation) is challenged because the data of each pool may contain up to n_individuals*ploidy different haplotypes (assemblers usually work on the premise of only 1-2 haplotypes present in the data)
+The aim would ideally be reached with haplotype-resolved chromosome-scale assemblies and individual re-sequencing data from at least 10 unrelated individuals per group (see my other pipelines).
 But if that is not available, and if you feel lucky, comparing only the pools of two groups can be a successful first step, and sufficient to design group-diagnostic PCR markers.
 
 
