@@ -65,7 +65,7 @@ wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz
 mkdir taxdump
 tar -xzf taxdump.tar.gz -C taxdump
 
-# now extract all taxids under a given higher taxon level for the four groups:
+# now extract all taxids `under a given higher taxon level for the four groups:
 # Viridiplantae are taxid 33090
 taxonkit list --data-dir taxdump -i 33090 | tr -d '[:blank:]' > NCBI_taxonomy_Viridiplantae_subtree.taxids.2026-08-13.txt
 
