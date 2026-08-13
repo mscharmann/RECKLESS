@@ -38,10 +38,51 @@ tools required:
 - seqtk
 - kmc
 - pandas
+- taxonkit
+
+install these into a conda environment:
+```
+conda create --name RECKLESS bioconda::blast snakemake-minimal samtools bwa megahit seqtk kmc pandas taxonkit -y
+```
 
 databases required: 
-- NCBI nt
+- local NCBI nt or core_nt, set up like so:
+```
+# check how many volumes it has at https://ftp.ncbi.nlm.nih.gov/blast/db/, then download and unpack
+for i in $(seq -w 0 79); do
+wget -c "https://ftp.ncbi.nlm.nih.gov/blast/db/core_nt.${i}.tar.gz"
+tar -xzf core_nt.${i}.tar.gz
+done
+ 
+# Verify that the database works
+blastdbcmd -db core_nt -info
+``
+	
 - lists (textfiles) of taxids under Viridiplantae subtrees etc. Ask author for specifics or read the code.
+```
+# download and unpack NCBI taxonomy dump
+wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz
+mkdir taxdump
+tar -xzf taxdump.tar.gz -C taxdump
+
+# now extract all taxids under a given higher taxon level for the four groups:
+# Viridiplantae are taxid 33090
+taxonkit list --data-dir taxdump -i 33090 | tr -d '[:blank:]' > NCBI_taxonomy_Viridiplantae_subtree.taxids.2026-08-13.txt
+
+# Fungi are taxid 4751
+taxonkit list --data-dir taxdump -i 4751 | tr -d '[:blank:]' > NCBI_taxonomy_Fungi_subtree.taxids.2026-08-13.txt
+
+# Metazoa are taxid 33208
+taxonkit list --data-dir taxdump -i 33208 | tr -d '[:blank:]' > NCBI_taxonomy_Metazoa_subtree.taxids.2026-08-13.txt
+
+# Bacteria are taxid 2
+taxonkit list --data-dir taxdump -i 2 | tr -d '[:blank:]' > NCBI_taxonomy_Bacteria_subtree.taxids.2026-08-13.txt
+
+# cleanup:
+gzip *.txt
+rm taxdump.tar.gz
+rm -r taxdump
+```
 
 
 ## simulate test data
