@@ -56,7 +56,7 @@ done
  
 # Verify that the database works
 blastdbcmd -db core_nt -info
-``
+```
 	
 - lists (textfiles) of taxids under Viridiplantae subtrees etc. Ask author for specifics or read the code.
 ```
