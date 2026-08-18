@@ -86,6 +86,35 @@ rm taxdump.tar.gz
 rm -r taxdump
 ```
 
+## How to keep jobs alive when logging off the server? tmux !
+https://en.wikipedia.org/wiki/Tmux
+
+start session named mysession:
+```
+tmux new -s mysession
+```
+detach from session: press Ctrl + b, then d
+
+list sessions:
+```
+tmux ls
+```
+re-attach session named "0":
+```
+tmux attach -t 0
+```
+
+close session: re-attach then
+```
+exit
+```
+
+kill all sessions:
+```
+tmux kill-server
+```
+
+
 ## start with snakemake and SLURM
 ```
 snakemake --jobs 100 --keep-going --rerun-incomplete --cluster "sbatch --cpus-per-task={threads} --mem=24G --time=04:00:00" --latency-wait 60 
