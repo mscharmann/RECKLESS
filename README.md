@@ -86,6 +86,11 @@ rm taxdump.tar.gz
 rm -r taxdump
 ```
 
+## start with snakemake and SLURM
+```
+snakemake --jobs 100 --keep-going --rerun-incomplete --cluster "sbatch --cpus-per-task={threads} --mem=24G --time=04:00:00" --latency-wait 60 
+```
+
 
 ## simulate test data
 
