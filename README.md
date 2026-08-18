@@ -12,6 +12,7 @@ But if that is not available, and if you feel lucky, comparing only the pools of
 
 
 inputs: short-reads (PE) of two groups, ideally pool-seq
+	ATTENTION: this currently works only WITH A SINGLE unit of PE reads per group! -- 2026-08-18
 
 output: list of putative genes that are either entirely specific to one group (e.g. Y-specific genes on sex-chromosomes), or that show SNP alleles specific to one group (e.g. gametologs on sex-chromosomes)
 
