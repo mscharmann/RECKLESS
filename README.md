@@ -40,9 +40,11 @@ tools required:
 - pandas
 - taxonkit
 
+
+
 install these into a conda environment:
 ```
-conda create --name RECKLESS bioconda::blast snakemake-minimal samtools bwa megahit seqtk kmc pandas taxonkit -y
+conda create --name RECKLESS bioconda::blast snakemake-minimal samtools bcftools bwa megahit seqtk kmc pandas taxonkit -y
 ```
 
 databases required: 
