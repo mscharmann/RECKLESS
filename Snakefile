@@ -298,7 +298,7 @@ rule classify_taxonomy:
 
 
 		metazoaset = []
-		with open(params.b, "r") as INF:
+		with open(params.m, "r") as INF:
 			for line in INF:
 				metazoaset.append(line.strip("\n"))
 
